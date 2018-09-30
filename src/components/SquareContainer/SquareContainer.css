@@ -1,0 +1,37 @@
+@font-face {
+  font-family: Roboto-Black;
+  src: url(../../assets/Roboto/Roboto-Black.ttf);
+}
+.moving-square-app {
+  border: 0;
+  box-sizing: border-box;
+  font-family: Roboto-Black;
+  font-size: 20px;
+  margin: 0;
+}
+
+.square--container {
+  border: 5px solid #26282e;
+  width: 90%;
+  height: 70vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.x__axis {
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+}
+
+.y__axis {
+  position: absolute;
+  left: -30px;
+  top: 0;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}

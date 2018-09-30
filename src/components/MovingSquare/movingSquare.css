@@ -1,0 +1,10 @@
+
+.square__coordinates {
+    font-family: Roboto-Black;
+    font-size: 14px;
+    position: absolute;
+}
+
+canvas {
+    display: inline;
+}
