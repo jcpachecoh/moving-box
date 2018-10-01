@@ -12,6 +12,7 @@ class SquareContainer extends Component {
     this.updateCanvasDimensions = this.updateCanvasDimensions.bind(this)
   }
   componentDidMount () {
+    this.updateCanvasDimensions();
     window.addEventListener('resize', this.updateCanvasDimensions)
   }
 
@@ -32,8 +33,8 @@ class SquareContainer extends Component {
       <div className='moving-square-app'>
         <div className='square square--container' id='square--container'>
           <MovingSquare
-            squareWidth={20}
-            squareHeight={20}
+            squareWidth={10}
+            squareHeight={10}
             color={'#EB4769'}
             canvasWidth={canvasWidth}
             canvasHeight={canvasHeight}

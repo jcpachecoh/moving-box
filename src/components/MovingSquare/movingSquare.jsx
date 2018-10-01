@@ -28,7 +28,7 @@ export class MovingSquare extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if(nextProps.canvasHeight === this.props.canvasHeight || nextProps.canvasWidth === this.props.canvasWidth) return //validte if the canvasheight or canvaswidth didn't change
+    if( nextProps.canvasWidth === this.props.canvasWidth) return //validte if the canvasheight or canvaswidth didn't change
 
     const { squareWidth, squareHeight, canvasHeight, canvasWidth } = this.props
     this.setState({
@@ -57,7 +57,7 @@ export class MovingSquare extends React.Component {
     })
   }
   moveToRight () {
-    const x = this.state.positionX + 10
+    const x = this.state.positionX < this.props.canvasWidth - 30 ?  this.state.positionX + 10 : this.state.positionX + 5
 
     this.setState({
       positionX: x,
@@ -72,7 +72,7 @@ export class MovingSquare extends React.Component {
     })
   }
   moveToDown () {
-    const y = this.state.positionY + 10
+    const y = this.state.positionY < this.props.canvasHeight - 30? this.state.positionY + 10: this.state.positionY + 5
     this.setState({
       positionY: y,
       coordinateY: y - 20
@@ -84,13 +84,13 @@ export class MovingSquare extends React.Component {
 
     var keyPr = event.keyCode // Key code of key pressed
 
-    if (keyPr === 39 && this.state.positionX <= canvasWidth - 30) {
+    if (keyPr === 39 && this.state.positionX <= canvasWidth - 25) {
       this.moveToRight()
     } else if (keyPr === 37) {
       this.moveToLeft()
     } else if (keyPr === 38) {
       this.moveToUp()
-    } else if (keyPr === 40 && this.state.positionY <= canvasHeight - 30) {
+    } else if (keyPr === 40 && this.state.positionY <= canvasHeight - 25) {
       this.moveToDown()
     }
 
