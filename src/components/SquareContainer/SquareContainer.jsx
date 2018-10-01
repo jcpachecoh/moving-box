@@ -6,16 +6,26 @@ class SquareContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      canvasWidth: 0,
-      canvasHeight: 0
+      canvasWidth: 700,
+      canvasHeight: 800
     }
+    this.updateCanvasDimensions = this.updateCanvasDimensions.bind(this)
   }
   componentDidMount () {
+    window.addEventListener('resize', this.updateCanvasDimensions)
+  }
+
+  updateCanvasDimensions() {
     this.setState({
       canvasWidth: document.getElementById('square--container').offsetWidth,
       canvasHeight: document.getElementById('square--container').offsetHeight
     })
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+  compoe
   render () {
     const { canvasHeight, canvasWidth } = this.state
     return (

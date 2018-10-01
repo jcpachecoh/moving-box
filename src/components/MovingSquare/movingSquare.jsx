@@ -27,6 +27,22 @@ export class MovingSquare extends React.Component {
     window.addEventListener('keydown', this.movingAction)
   }
 
+  componentWillReceiveProps (nextProps) {
+    if(nextProps.canvasHeight === this.props.canvasHeight || nextProps.canvasWidth === this.props.canvasWidth) return //validte if the canvasheight or canvaswidth didn't change
+
+    const { squareWidth, squareHeight, canvasHeight, canvasWidth } = this.props
+    this.setState({
+      positionX: 0,
+      positionY: 0,
+      coordinateX: 0,
+      coordinateY: 0
+    })
+    const ctx = this.refs.canvas.getContext('2d')
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+    const { positionX, positionY } = this.state
+    this.drawRect(positionX, positionY, squareWidth, squareHeight)
+  }
+
   drawRect (x, y, w, h) {
     const ctx = this.refs.canvas.getContext('2d')
     ctx.fillStyle = this.props.color
@@ -37,7 +53,7 @@ export class MovingSquare extends React.Component {
 
     this.setState({
       positionX: x,
-      coordinateX: x + 30
+      coordinateX: x + 20
     })
   }
   moveToRight () {
@@ -45,7 +61,7 @@ export class MovingSquare extends React.Component {
 
     this.setState({
       positionX: x,
-      coordinateX: x === 0 ? x +10 : x + 20
+      coordinateX: x === 0 ? x + 10 : x + 20 // validating inital state to move the coodinates, when initial state is 0 put 10px ahead if not put 20 ahead
     })
   }
   moveToUp () {
@@ -64,9 +80,7 @@ export class MovingSquare extends React.Component {
   }
 
   movingAction (event) {
-    let x = this.state.positionX,
-      y = this.state.positionY,
-      { canvasWidth, canvasHeight, squareWidth, squareHeight } = this.props
+    const { canvasWidth, canvasHeight, squareWidth, squareHeight } = this.props
 
     var keyPr = event.keyCode // Key code of key pressed
 
@@ -83,8 +97,10 @@ export class MovingSquare extends React.Component {
     const ctx = this.refs.canvas.getContext('2d')
     ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 
+    // validating new state to draw new square
+    const { positionX, positionY } = this.state
     // Drawing rectangle at new position
-    this.drawRect(x, y, squareWidth, squareHeight)
+    this.drawRect(positionX, positionY, squareWidth, squareHeight)
   }
 
   render () {

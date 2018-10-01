@@ -13,11 +13,15 @@
       "bower_components",
       "shared"
     ],
-    "transformIgnorePatterns": ["/node_modules/"],
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
     },
-    "setupFiles": ["jest-canvas-mock"],
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>setupConfig.js",
     "collectCoverage": true
   },
